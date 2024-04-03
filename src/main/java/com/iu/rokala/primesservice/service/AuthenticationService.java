@@ -10,19 +10,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.iu.rokala.primesservice.model.Customer;
+import edu.iu.rokala.primesservice.repository.AuthenticationDBRepository;
 import com.iu.rokala.primesservice.repository.IAuthenticationRepository;
 
 @Service("authenticationService")
 public class AuthenticationService implements IAuthenticationService, UserDetailsService {
 
-	private IAuthenticationRepository authenticationRepository;
+	// private IAuthenticationRepository authenticationRepository;
+	AuthenticationDBRepository authenticationRepository;
 
-	public AuthenticationService(IAuthenticationRepository authenticationRepository) {
+	public AuthenticationService(AuthenticationDBRepository authenticationRepository) {
 		this.authenticationRepository = authenticationRepository;
 	}
 
 	@Override
-	public boolean register(Customer customer) throws IOException {
+	public Customer register(Customer customer) throws IOException {
 		BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		String passwordEncoded = bc.encode(customer.getPassword());
 		customer.setPassword(passwordEncoded);
