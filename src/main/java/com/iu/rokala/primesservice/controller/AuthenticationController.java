@@ -15,6 +15,7 @@ import com.iu.rokala.primesservice.service.IAuthenticationService;
 import com.iu.rokala.primesservice.service.TokenService;
 
 @RestController
+@CrossOrigin({"http://127.0.0.1:5500"})
 public class AuthenticationController {
 
 	private IAuthenticationService authenticationService;
